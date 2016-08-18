@@ -18,15 +18,17 @@ $ArrList = [System.Collections.ArrayList]@()
 $files = [System.Collections.ArrayList]@()
 # enumerate the items array
 
-# find all elements containing at least 4 digits in their name, converting them into int and adding into a new arraylist
+# find all elements containing at least 3 digits in their name, converting them into int and adding into a new arraylist
 foreach ($item in $items)
 {
       # if the item is NOT a directory, then process it.
-      if ($item.Attributes -ne "Directory" -and $item.BaseName -match '(\d{4})')
+      if ($item.Attributes -ne "Directory" -and $item.BaseName -match '(\d{3})')
       {
         [Void]$ArrList.Add($item.BaseName) 
       }
 }
+# sort
+[Void]($ArrList | Sort-Object)
 
 #parsing arraylist checking for conseductive numbers
 for ($i=1; $i -le $ArrList.Count;$i++)
