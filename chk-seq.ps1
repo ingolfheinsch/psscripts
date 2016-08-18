@@ -1,4 +1,6 @@
-﻿if ($args.Length -eq 0)
+﻿# this script checks a given folder for conseductive file namings as there are used for image sequences
+# it returns missing numbers
+if ($args.Length -eq 0)
 {
     echo "path missing"
     echo "Usage: chk-seq <path>"
@@ -9,9 +11,6 @@ else
 # initialize the items variable with the
 # contents of a directory
 $items = Get-ChildItem -Path $args[0]
-
-
-
  
 #create int array to store filenumbers
 $ArrList = [System.Collections.ArrayList]@()
@@ -37,8 +36,4 @@ for ($i=1; $i -le $ArrList.Count;$i++)
         Write-Host ($ArrList[$i]-1) is missing
     }
 }
-
-
-
-
 }
