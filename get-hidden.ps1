@@ -1,25 +1,25 @@
 ﻿param(
       [parameter()][alias("r")]
-      $rec,
+      $recursive,
 
       [parameter()][alias("d")]
-      $del,
+      $delete,
 
       [Parameter(Mandatory = $true, Position = 0)]
       [string] $path
    )
-   if ($rec -eq "true")
+   if ($recursive -eq "true")
    {
         Get-ChildItem $path -recurse -force | Where-Object {$_.mode -match "h"}
-        if ($del -eq "true")
+        if ($delete -eq "true")
         {
             Get-ChildItem $path -recurse -force | Where-Object {$_.mode -match "h"} | Remove-Item -force
         }
    }
     else
    {
-    Get-ChildItem $path -force | Where-Object {$_.mode -match "h"}
-    if ($del -eq "true")
+        Get-ChildItem $path -force | Where-Object {$_.mode -match "h"}
+    if ($delete -eq "true")
         {
              Get-ChildItem $path -force | Where-Object {$_.mode -match "h"} | Remove-Item -force
         }
